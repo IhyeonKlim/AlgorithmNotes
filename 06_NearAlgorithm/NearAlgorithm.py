@@ -15,9 +15,12 @@ def main():
     #[2] Process: NEAR
     for i in range(0, N):
         _abs = abs(numbers[i] - target) # 차잇값의 절댓값
+        #cf. abs -> absolute함수다. 절대값을 구해주는 것.       
         if _abs < min:
             min = _abs # MIN: 최솟값 알고리즘
-            near = numbers[i] # NEAR: 차잇값의 절댓값의 최솟값일 때의 값 
+            near = numbers[i] 
+            # NEAR: 차잇값의 절댓값의 최솟값일 때의 값
+            # 이것을 근사값으로 본다.
 
     #[3] Output
     print(f"{target}와/과 가장 가까운 값: {near}(차이: {min})")
