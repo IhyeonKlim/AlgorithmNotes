@@ -1,0 +1,66 @@
+/*WARNING
+#Objectives.
+
+Motivate the needs for somthing like Big O Notation;
+Descrive what Big O nataion is.
+Simplify Big O Expressions
+Define "time complexity"and "space complexity"
+Evaluate the time complexity and space comlplexity of different algorithms using Big O Notation
+Descrvibe what a loalgorithem
+
+목표.
+
+빅오노테이션이 필요한 이유를 안다.
+그리고 그것이 무엇인지 설명할 줄 안다.
+시간복잡도와 공간볻잡도를 정의한다.
+시간복잡도와 공간복잡도를 평가하여 다른 알고리즘과 비교한다.
+
+알고리즘은 다양한 문제를 해결하는 것이다.
+컴퓨터 공학과 자료구조에 대한 이야기다.
+
+해결법은 많겠지만, 가장 최고가 있다면 평가를 어떻게 할 것인가?
+
+
+빅오 : 여러 코드를 서로 비교하고 성능을 평가하는 코드다.
+
+해결책과 접근방식. 
+
+마치 리히터 척도처럼. 평가하는 표기법.
+
+performance matters.
+
+코드가 얼마나 효율적인지를 분석하는 것.
+
+*/
+
+function addUpTo(n){
+    let total =0;
+    for(let i =1; i <=n; i++){
+        total += i;
+    }
+    return total;
+}
+
+console.log(addUpTo(6));
+
+function addUpTo2(n){
+    return n *(n+1)/2;
+}
+
+console.log(addUpTo2(6));
+
+/*
+what does better means.
+faster?
+less memory-intensive?
+more readable?
+
+speed + memoryusage.
+
+*/
+
+let t1 = performance.now();
+addUpTo(1000000000);
+let t2 = performance.now();
+console.log(`Time Elapsed: ${(t2-t1) /1000} seconds.`);
+
