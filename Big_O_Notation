@@ -63,4 +63,44 @@ let t1 = performance.now();
 addUpTo(1000000000);
 let t2 = performance.now();
 console.log(`Time Elapsed: ${(t2-t1) /1000} seconds.`);
+/*
+    O(f(n))
 
+    f(n) could be linear (f(n)=n)
+        - n 값이 커지면 커질수록 1대1로 증가
+    f(n) could be quadratic(f(n)=n*n)
+        - 실행시간이 제곱.
+    f(n) could be constant (f(n)=1)
+        - 상수만큼.
+    f(n) could be somthing entirely different
+
+    O(f(n))은 가장 높은 시간값(최악)에 대해서 이야기하는 것이다.
+
+    상술된 
+    addUpTo(n) = O(1)이다.
+    addUpTo2(n) = O(n)이다.
+*/
+
+//O(n)
+function countUpAndDown(n){
+    console.log("going up.");
+    for(let i = 0; i < n; i++){
+        console.log(i);
+    }
+    console.log("At the top \n Going down.");
+    for( let j = n-1; j >=0; j--){
+        console.log(j);
+    }
+    console.log("Break down.");
+}
+countUpAndDown(10);
+
+//O(n*n)
+function printAllPairs(n){
+    for(let i = 0; i < n; i++){
+        for(let j = 0; j < n; j++){
+            console.log(i,j);
+        }
+    }
+}
+printAllPairs(3);
