@@ -1,0 +1,138 @@
+//#주차장 알고리즘 JS
+
+//첫번째 설정값 요금
+//180분 기준,  기본요금 5000원, 분당 시간 10분, 당 500원, 1일 초과시 가산금
+let feeRate = [180,5000,10,500,5000];
+
+//----------------여기부터 테스트를 위한 로직
+//차량 번호 이건 AI가 판독해서 입력받았다고 가정합시다.
+dummyCarIdList = ['12가4187','13나4187','14다4188','15라4189','16마4190']    
+
+//더미데이터 넣을 녀석 
+let savedRandInt = new Set();
+
+//테스트 데이터
+//차량번호, 표기시간, 계산시간, "IN or OUT", 첫번째 데이터는 샘플.
+let recordsIn = ["00테0000, 2023. 1. 25. 오후 4:58:28,1674635233364,IN"];
+
+//저장할 공간(로그)
+let parkingIn = {};
+let parkingOut = {};
+
+//now In and 정산금액 저장
+let nowParking = new Map();
+
+//지금 나가는 차
+let nowCarId ="";
+
+//두번째 설정값 입출차 관련 샘플데이터(입력받는 값)
+//데이터 세팅.
+init();
+//주차시작.
+parking(recordsIn);
+
+//이 데이터도 제공받았다 칩시다.
+//출차 데이터 세팅.
+let recordsOut = ["00테0000, 2023. 1. 26. 오후 2:39:28,1674711568079,OUT"];
+
+//출차 1대만
+driving(recordsOut);
+
+//데이터 초기화
+function init(){
+    for(let j=0; j<3; j++){
+        randInt = Math.floor(Math.random() * 4+1);
+        savedRandInt.add(randInt);
+    }
+    savedRandInt.forEach((value)=>{recordsIn.push(getCarcTime(dummyCarIdList[value],"IN"))});
+}
+
+
+//계산하기 편하게 표기시간 및 계산시간 구분. 계산시간은 초단위로 return.
+//차량 id와 IN인지 OUT인지 확인만 되면 데이터 리턴함.
+function getCarcTime(carId,inOrOut){
+    let sysDate = new Date();
+    let locale = sysDate.toLocaleString();
+    let sysTime = sysDate.getTime();
+    let recordString = `${carId}, ${locale},${sysTime},${inOrOut}`;
+    return recordString
+}
+
+//분표기로 변경
+function fnCarcTime(outTime, inTime){
+    let time2 = outTime;
+    let time1 = inTime;
+    const H = 24;
+    const M = 60;
+    const S = 60;
+    const ms = 1000;
+    const days = H*M*S*ms;
+    const hours = M*S*ms;
+    const minutes = S*ms;
+    let chargingTime = Number(time2 - time1);
+    let chargingDay = Math.floor(chargingTime/days);
+    let chargingHour = Math.floor((chargingTime/hours)%H);
+    let chargingMinute = Math.ceil((chargingTime/minutes));
+    let chargingMinuteString = Math.ceil((chargingTime/hours)%M);
+    let chargingString = `주차시간은 ${chargingDay}일 ${chargingHour}시간 ${chargingMinuteString}분 입니다. #${chargingMinute}`
+    return chargingString;
+}
+
+//데이터 들어오면 JSON오브젝트로
+function recordsJSON(records){
+    for (let i = 0; i < records.length; i++){
+        let array = records[i].split(",");
+        let carId = array[0]
+        let expTime = array[1];
+        let carcTime = array[2];
+        let isIn = array[3];
+        nowCarId = carId;
+        if(isIn == "IN"){
+            parkingIn[carId] = Number(carcTime);
+            console.log(`'${nowCarId}'님 ${expTime} 주차.`);
+            nowParking[carId] = 0;
+        }else{
+            parkingOut[carId] = Number(carcTime);
+            console.log(`'${nowCarId}'님 ${expTime} 출차.`);
+        }
+    }
+}
+//주차비 정산
+function calculate(carId){
+    let chargingString = fnCarcTime(parkingOut[carId], parkingIn[carId]).split("#");
+    let parkingTermString = chargingString[0];
+    if(parkingIn[carId] > 0 && parkingOut[carId] > 0){
+        let chargingMinute = Number(chargingString[1]);
+        if(chargingMinute <= feeRate[0]){
+            nowParking[carId] = feeRate[1];            
+        }else{
+            nowParking[carId] += feeRate[1] + ((chargingMinute -feeRate[0])/feeRate[2]) * feeRate[3]
+        }
+    }
+    console.log(`${carId} 차주님의 ${parkingTermString}`);
+    console.log(`정산요금은 ${nowParking[carId]}원입니다.`);
+
+    //to-do 정산로직...? 들어올땐 마음대로지만 나갈땐..
+    
+    //주차장에서 정산한친구는 일단 빼줍시다.
+    delete nowParking[carId];
+    
+}
+
+//주차
+function parking(recordsIn){
+    recordsJSON(recordsIn);
+    const parkingCount = Object.keys(nowParking).length;
+    console.log(`주차된 차량 총: ${parkingCount} 대`);
+}
+
+//출차
+function driving(recordsOut){
+    recordsJSON(recordsOut);
+    calculate(nowCarId);    
+    const leftCount = Object.keys(nowParking).length;
+    console.log(`주차된 차량 총: ${leftCount} 대`);
+
+}
+
+
