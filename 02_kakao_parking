@@ -1,4 +1,5 @@
-//#주차장 알고리즘 JS
+//#주차장 알고리즘 JS by ihyeon0214
+//snippets 넣고 test 해보기 바람.
 
 //첫번째 설정값 요금
 //180분 기준,  기본요금 5000원, 분당 시간 10분, 당 500원, 1일 초과시 가산금
@@ -6,15 +7,17 @@ let feeRate = [180,5000,10,500,5000];
 
 //----------------여기부터 테스트를 위한 로직
 
-//차량 번호 이건 AI가 판독해서 입력받았다고 가정합시다. -> to-Do : 차량번호 입력받는 로직 필요.
+    //차량 번호 이건 AI가 판독해서 입력받았다고 가정합시다. -> to-Do : 차량번호 입력받는 로직 필요.
 dummyCarIdList = ['12가4187','13나4187','14다4188','15라4189','16마4190']    
 
-//더미데이터 넣을 녀석 
+    //더미데이터 넣을 녀석 
 let savedRandInt = new Set();
 
-//테스트 데이터
-//차량번호, 표기시간, 계산시간, "IN or OUT", 첫번째 데이터는 샘플.
+    //테스트 데이터
+    //차량번호, 표기시간, 계산시간, "IN or OUT", 첫번째 데이터는 샘플.
 let recordsIn = ["00테0000, 2023. 1. 25. 오후 4:58:28,1674635233364,IN"];
+
+//----------------여기까지 테스트를 위한 로직
 
 //저장할 공간(로그로도 활용가능)
 let parkingIn = {};
@@ -126,8 +129,10 @@ function calculate(carId){
     
 }
 
-//주차시
+//주차시 **1대씩 하는 경우는 recordsIn 대신 carId를 받으면 됌. 
 function parking(recordsIn){
+    // const inString = "IN";
+    // recordsIn.push(getCarcTime(carId, inString));
     recordsJSON(recordsIn);
     const parkingCount = Object.keys(nowParking).length;
     console.log(`주차된 차량 총: ${parkingCount} 대`);
@@ -135,10 +140,10 @@ function parking(recordsIn){
 
 //출차시
 function driving(recordsOut){
+    // const outString = "OUT";
+    // recordsOut.push(getCarcTime(carId, outString));
     recordsJSON(recordsOut);
     calculate(nowCarId);    
     const leftCount = Object.keys(nowParking).length;
     console.log(`주차된 차량 총: ${leftCount} 대`);
 }
-
-
