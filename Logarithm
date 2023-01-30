@@ -1,0 +1,15 @@
+//O(log N)
+
+
+//log2(8) = 3 -> 2^3 = 8
+// log_const(value) = exponent -> const^exponent = value;
+//지수 함수의 반대 로그 함수.
+
+//problely shouldn't have to say that, anyway.
+
+// we will omit the 2. 
+//log === log2
+
+// 알고리즘에서 O(1)과 O(log N)은 큰 차이가 나지 않는다.
+
+//탐색, 효율정렬, 재귀에서 로그를 쓴다. cf. 재귀는 공간복잡도가 더 중요하지만.
