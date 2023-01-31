@@ -1,0 +1,48 @@
+/*
+JavaScript
+
+Objectives
+
+why adding elements to the beggining of an array is costly.
+
+built in methods.
+
+Objectives : 
+1. when you don't need order.
+2. when you need fast access / insertio and removal.
+
+Big O of objects
+insertion - O(1)
+renoval - O(1)
+searching - O(N)
+Access O(1)
+
+-> fastest. without order.
+= 오브젝트는 객체의 시작과 끝이 정해져있지 않다.
+= 어디에서 새로운 객체를 입력하든지 관계 없다.
+그저 키를 통해서 추가할 뿐이다.
+
+입력, 제거, 접근까지 모두 상수시간이 걸린다. hashmap and table.
+*/
+
+let instructor = {
+    firstNmae : "Kelly",
+    isInstructor:true,
+    favoriteNumbers : [1,2,3,4]
+}
+
+//    ㅁ             ㅁ =true              ㅁ
+// firstNmae    isInstructor    favoriteNumbers
+
+
+/*
+    Big O of Object Methods.
+    Object.keys = O(N)
+    Object.values = O(N)
+    Object.entries = O(N)
+    hasOwnProperty = O(1)
+
+*/
+Object.keys(instructor);
+Object.entries(instructor);
+instructor.hasOwnProperty("firstName") //true
