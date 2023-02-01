@@ -13,7 +13,7 @@ Objectives :
 
 Big O of objects
 insertion - O(1)
-renoval - O(1)
+removal - O(1)
 searching - O(N)
 Access O(1)
 
@@ -43,6 +43,9 @@ let instructor = {
     hasOwnProperty = O(1)
 
 */
-Object.keys(instructor);
-Object.entries(instructor);
-instructor.hasOwnProperty("firstName") //true
+/*
+    Arrays 
+
+*/
+
+Object.keys(instructor)   ;
