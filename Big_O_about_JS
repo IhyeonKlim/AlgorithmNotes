@@ -49,3 +49,16 @@ let instructor = {
 */
 
 Object.keys(instructor)   ;
+
+let names = ["MIchael", "Melissa","Andrea"];
+/*
+Big O of Arrays.
+insertion - It depends
+Removal - It depends
+Searching - O(N)
+Access - O(1)
+
+if pushing = O(1)
+
+*/
+
