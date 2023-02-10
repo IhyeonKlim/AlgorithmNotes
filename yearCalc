@@ -1,34 +1,34 @@
 let testParam = '19880614';
 
 function dateDiff(param){
-  if(!param){
-      let resultFlag = false;
-      let paramYear = Number(param.substring(0,4));
-      let paramMonth = param.substring(4,6);
-      paramMonth = Number(paramMonth.replace(/(^0+)/,""));
-      let paramDate = param.substring(6,8);
-      paramDate = Number(paramDate.replace(/(^0+)/,""));
-
-      let today = new Date();
-      let notTeenYear = today.getFullYear() -15;
-      let thisMonth = today.getMonth() + 1;
-      let thisDate = today.getDate();
-
-      if(paramYear < notTeenYear){
-          resultFlag = true;
-      }else if(paramYear == notTeenYear){
-        if(paramMonth < thisMonth){
+    if(!param){
+        let resultFlag = false;
+        let paramYear = Number(param.substring(0,4));
+        let paramMonth = param.substring(4,6);
+        paramMonth = Number(paramMonth.replace(/(^0+)/,""));
+        let paramDate = param.substring(6,8);
+        paramDate = Number(paramDate.replace(/(^0+)/,""));
+        
+        let today = new Date();
+        let notTeenYear = today.getFullYear() -15;
+        let thisMonth = today.getMonth() + 1;
+        let thisDate = today.getDate();
+        
+        if(paramYear < notTeenYear){
             resultFlag = true;
-        }else if (paramMonth == thisMonth){
-            if(paramDate <= thisDate){
-                resultFlag =true;
+        }else if(paramYear == notTeenYear){
+            if(paramMonth < thisMonth){
+                resultFlag = true;
+            }else if (paramMonth == thisMonth){
+                if(paramDate <= thisDate){
+                    resultFlag =true;
+                }
             }
         }
-      }
-      return resultFlag;    
-  }
+        return resultFlag;
+    }
 }
-  
+console.log(dateDiff(testParam));
 
 /*
 let today = new Date();
