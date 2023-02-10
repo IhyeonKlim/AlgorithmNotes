@@ -1,9 +1,35 @@
+let testParam = '19880614';
 
-let today = new Date();
-
-let checkDay = new Date("1988-02-14");
+function dateDiff(param){
+  let resultFlag = false;
+  let paramYear = Number(param.substring(0,4));
+  let paramMonth = param.substring(4,6);
+  paramMonth = Number(paramMonth.replace(/(^0+)/,""));
+  let paramDate = param.substring(6,8);
+  paramDate = Number(paramDate.replace(/(^0+)/,""));
+  
+  let today = new Date();
+  let notTeenYear = today.getFullYear() -15;
+  let thisMonth = today.getMonth() + 1;
+  let thisDate = today.getDate();
+  
+  if(paramYear < notTeenYear){
+      resultFlag = true;
+  }else if(paramYear == notTeenYear){
+    if(paramMonth < thisMonth){
+        resultFlag = true;
+    }else if (paramMonth == thisMonth){
+        if(paramDate <= thisDate){
+            resultFlag =true;
+        }
+    }
+  }
+    return resultFlag;
+}
+  
 
 /*
+let today = new Date();
 console.log(`날짜계산 바로 ${today - checkDay}`);
 
 let a = today.getTime();
@@ -18,7 +44,7 @@ let newDay = new Date(a-b);
 console.log(`${newDay}`)
 
 let milDay = new Date('1970-01-01');
-*/
+
 
 let milliseconds = today - checkDay;
 
@@ -29,3 +55,6 @@ let hours = minutes/60;
 let days = hours/24;
 
 let years = days/365;
+
+cf. 윤년?
+*/
