@@ -50,6 +50,9 @@ let instructor = {
 
 Object.keys(instructor)   ;
 
+
+
+
 let names = ["MIchael", "Melissa","Andrea"];
 /*
 Big O of Arrays.
@@ -58,7 +61,13 @@ Removal - It depends
 Searching - O(N)
 Access - O(1)
 
-if pushing = O(1)
+if 
+push = O(1)
+pop = O(1)
+shift = O(N)
+sort = O(N*logN)
+concat = O(N)
+slice = O(N)
 
+forEach/map/filter/reduce/etc O(N)
 */
-
