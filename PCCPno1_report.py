@@ -26,19 +26,33 @@ def solution(id_list, report, k):
     #return 하는 배열은 id_list에 담긴 id 순서대로 각 유저가 받은 결과 메일 수를 담으면 됩니다.
 
     answer = []
+    #report에 들어온 데이터가 중복되므로 set으로 리스트를 만들어준다.
     report = list(set(report))
 
+    #신고한 유저에게 정지 사실을 메일로 발송해야한다. 그러면 신고한 유저가 누굴 신고했는지 담을 곳이 필요하다. 
+    #데이터를 담을 2개의 딕셔너리를 만든다. key value를 통해 꺼낼 수 있도록.
+    #hash ->key + value 탐색에 검색속도를 O(1)을 제공한다.
+    
+    #set 구조니까 set으로 만든다. 
     report_hashset = collections.defaultdict(set)
+
+    #신고당한 사람은 k번 이상 신고 당할시 정지되어야 한다. 
+    #int 구조니까 int로 만든다.
     baned_count = collections.defaultdict(int)
     
+    #먼저 리포트를 정리한다. 나의 아이디 : {신고한 유저1, 유저2} 가 될것이다. 
     for x in report:
-        reporter, ban_list = x.split(" ")
-        report_hashset[reporter].add(ban_list)
-        baned_count[ban_list]+=1
-    
+        reporter, banedUser = x.split(" ")
+        report_hashset[reporter].add(banedUser)
+        #신고 당한사람은 몇회 신고 당했는지 누적시킨다.
+        baned_count[banedUser]+=1
+
+    #전체 아이디리스트에서 각 id별로 메일을 몇통 받는지 센다.
     for name in id_list:
         mail=0
+        #각 아이디 별로 신고한 사람 찾기 내가 신고한 유저가 몇번 신고받았는지 체크.
         for user in report_hashset[name]:
+            #신고당한 녀석의 id로 조회해서 누적횟수가 k보다 많은지 조회
             if baned_count[user] >=k:
                 mail+=1
         answer.append(mail)    
