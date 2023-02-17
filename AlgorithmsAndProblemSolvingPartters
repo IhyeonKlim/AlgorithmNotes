@@ -18,10 +18,57 @@ how do you improve?
 
 problem solving
 
-unserstand the problem
-explore concreate examples
-break it down
-solve/simplify
-look back and refactor
+*unserstand the problem
+**explore concreate examples
+***break it down
+****solve/simplify
+*****look back and refactor
 
+
+
+what is understand the problem?
+1. Can I restate the problem in my own words?
+2. what are the inputs that go into the problem?
+3. what are the outputs that should come from the solution to the problem?
+4. can the outputs be determined from the inputs? 
+-> do i have enough information to solve the problem?
+5. How should I label the important pieces of date that are a part of the problem?
+
+following this guide.
+===================================================================
+Q. Write a function which takes two numbers and returns their sum.
+===================================================================
+1. Can I restate the problem in my own words?
+-> "addtion of two inputs."
+2. What are the inputs that go into the problem?
+-> is it int?, floats? how large enough?
+3. What are the outputs that should come from the solution to the problem?
+-> is it int?, floats? string?
+4. Cant the outputs be determined from the inputs?
+-> if put it one. or many. what do i return?
+5. How should I label it?
+-> addtion function. for something.
+
+example
+========================================================
+Write a function which takes in a string and returns counts of each character in the string.
+========================================================
 */
+
+charCount("aaaa"); //{a:4}
+charCoutn("hello"); //{h:1, e:1, l:2, o:1}
+
+//전달받은 문자만 반환해야하는가? 아니면 다른 녀석들도 해야 하는가? b:0? 이런식으로.
+//이미 0으로 지정되어 있다면 그냥 +만 시키면 되는거 아닌가? 같은 생각이 필요하다.
+
+"my phone number is 1234"
+//공백은 어찌 처리할껀데? 숫자는 어찌할껀데?
+"Hello hi"
+//대문자와 소문자를 모두 저장했을 때 시작의 대문자는 무시해야 할까?
+
+//문제해결하기 이전에 이러한 질문들을 던지는 것이 문제를 더 이해하는 다른 방식을 도입하게 되고 문제점을 해결할 수 있다. 
+
+charCount() //아무것도 넣지 않으면?
+charCount(null) //잘못된 값을 넣으면?
+
+
