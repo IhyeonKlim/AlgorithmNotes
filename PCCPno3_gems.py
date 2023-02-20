@@ -106,5 +106,38 @@ def solution(gems):
         #포인트는 lt는 키를 줄이면서 오고 rt는 증가시키면서 간다.
         #줄어들면 여기서 바로 멈춰서 끝내버리면 된다.
     '''
-    
+
+    """ #무슨 느낌인진 알겠는데, 잘 모르겠다.
+    gemCount = len(set(gems))
+    gemHash = collections.defaultdict(int)
+
+    for i in range (0,len(gems)):
+        gemHash[gems[i]] = 0
+        while(len(gemHash) == gemCount):
+            gemHash[gems[i]]+= 1        
+            print(gemHash)
+    """
+    import collections
+    def solution(gems):
+        answer = [0,0] #구간을 저장하는 애니까 0,0으로 해놓는다.
+        sH = collections.defaultdict(int) #int 넣으면 기본적으로 0으로 초기화 된다.
+        k = len(set(gems)) #중복을 제외한 보석종류의 가지수
+        lt = 0 
+        maxL = 100000 #구간 길이의 가장 작은 값을 찾아야 하니까 max값을 잡았따.
+        for rt in range(len(gems)): #rt가 0부터 끝까지 도는거다. rt가 증가하면서 해싱하는거다.
+            sH[gems[rt]]+=1
+            while(len(sH) == k): #rt값이 증가해서 세팅된 경우, lt값을 증가시켜서 구간 내 재확인을 하는거다.
+                if rt-lt+1 < maxL: #rt-lt+1 = 구간의 길이 인데 일단 저장을 한번해준다.
+                    #cf. 구간의 길이가 작을때만 바꾼다. 같은 상황이 생기면 안바꾼다. 
+                    #예를 들어 앞도 구간이 5고 뒤고 5인경우에는 바꾸지 않는다.
+                    #인덱스 번호가 작은 쪽을 선택한다고 했다. 진열대 번호가 큰걸로 바꿔야 하는 경우에 같다를 해야한다. 
+                    maxL = rt-lt+1 #가장 구간이 큰 값에 현재 값을 저장.
+                    answer = [lt+1,rt+1] #answer로 들어가는 내용은 인덱스니까 +1
+                sH[gems[lt]]-=1 #이제 lt가 한번씩 움직인다. lt가 움직였으니 그 자리 있던 값은 빼주고
+                if sH[gems[lt]] == 0: #그게 0이 되면 아예 삭제를 시켜서 key값을 지운다.
+                    del sH[gems[lt]]  #이걸 삭제해야 while문이 조건에 맞춰 멈춘다.
+                lt+=1 #그리고 lt는 증가한다. 언제까지? key 값이 전체 보석종류수와 동일할 때까지.
+        #for문안에 있는 while문은 몇번 도는가? n번 도는 것이다. 
+        #실질적으로 lt = 0부터 시작해서 보석의 개수만큼도 안돌게 되어있다. 최적화다.
+            
     return answer
