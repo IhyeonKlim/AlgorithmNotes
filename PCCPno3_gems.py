@@ -1,3 +1,4 @@
+"""
 import collections
 
 def solution(gems):
@@ -28,14 +29,14 @@ def solution(gems):
         map[gem] += 1
         board.append(map[gem])            
     print(board)
-
+"""
     #해법 1-> 2중 포문이 돌고 O(n2) 형식으로 처리하는 법을 떠올려야 한다.
     #보석을 해싱한다. len(hs) = len(set(gems))일때가 가장 짧은 구간이다.
     #보석 종류의 개수만 알고 있으면 된다.
     #이렇게 하면 정확성은 통과하는데, 10만개면 효율성은 망한다.
     #그러면 어떻게 할 것인가가 포인트.
     #추가적으로 알아야 하는 것. 인덱스 번호에 따라서 0부터 6까지면 6-0+1 = 7이 len이 된다.
-    """
+"""
         import collections
         def solution(gems):
             answer = [0,0]
@@ -54,7 +55,7 @@ def solution(gems):
 
     이렇게 하면 정확성은 통과는 된다. 하지만 효율성은 통과할 수 없다.
     O(n2) -> O(n)으로 해야 해결할 수 있다. 
-    """
+"""
     ''' 이런 경우 2pointers algorythm으로 해결해야 한다.
         #lt 부터 rt까지 싹쓸이 한다. 
         for rt in range(len(gems)):
@@ -107,7 +108,7 @@ def solution(gems):
         #줄어들면 여기서 바로 멈춰서 끝내버리면 된다.
     '''
 
-    """ #무슨 느낌인진 알겠는데, 잘 모르겠다.
+""" #무슨 느낌인진 알겠는데, 잘 모르겠다.
     gemCount = len(set(gems))
     gemHash = collections.defaultdict(int)
 
@@ -116,7 +117,8 @@ def solution(gems):
         while(len(gemHash) == gemCount):
             gemHash[gems[i]]+= 1        
             print(gemHash)
-    """
+"""
+    '''
     import collections
     def solution(gems):
         answer = [0,0] #구간을 저장하는 애니까 0,0으로 해놓는다.
@@ -141,6 +143,36 @@ def solution(gems):
         #for문안에 있는 while문은 몇번 도는가? 프로그램이 종료될때까지 총 n번밖에 도는 것이다. n번씩이 아니라. *N이 아니라 +N이다. 
         #실질적으로 lt = 0부터 시작해서 보석의 개수만큼도 안돌게 되어있다. 최적화다.
         #O(N2)이 아니라 O(2N) 이기 때문에 시간복잡도는 O(N)이나 마찬가지다.           
-                     
-            
+    '''
+#최종 풀이 내용
+import collections
+
+def solution(gems):
+    #return 해줄 answer가 시작 번호와 끝번호를 구하기에 0,0으로 초기화해준다.
+    answer = [0,0]
+    #먼저 중복을 제거한 보석 전체의 개수를 구한다.
+    gemCount = len(set(gems))
+    #접근 할때 보석의 이름으로 hash를 잡고, 그것이 몇번 중복되었는지 count할 object를 만든다.
+    # defaultdict로 만들면 초기화 값은 0이다.
+    gemHash = collections.defaultdict(int)
+
+    #pointer가 2개 돌꺼다. 바깥쪽에 기준 포인터를 잡아준다.
+    leftPointer = 0
+    #최소 구간을 찾아야 하기때문에 전제 구간의 최대 수를 잡아준다. gems의 최대 배열크기.
+    maxRange = 100000
+    
+    #포인터가 2개 도는 for문을 만들고 while을 통해 조건을 설정한다.
+    #오른쪽 포인터가 증가하는 것으로 설정. 범위는 0부터 gems의 max range다.
+    for rightPointer in range (len(gems)):
+        gemHash[gems[rightPointer]] += 1
+        while(len(gemHash) == gemCount):
+            buyRange = rightPointer - leftPointer + 1
+            if buyRange < maxRange:
+                maxRange = buyRange;
+                answer = [leftPointer + 1 , rightPointer +1]
+            gemHash[gems[leftPointer]] -=1
+            if gemHash[gems[leftPointer]] == 0:
+                del gemHash[gems[leftPointer]]
+            leftPointer += 1
+    
     return answer
