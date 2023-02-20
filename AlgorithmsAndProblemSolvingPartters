@@ -55,20 +55,96 @@ Write a function which takes in a string and returns counts of each character in
 ========================================================
 */
 
-charCount("aaaa"); //{a:4}
-charCoutn("hello"); //{h:1, e:1, l:2, o:1}
+//1. understand the problem.
+//charCount("aaaa"); //{a:4}
+//charCount("hello"); //{h:1, e:1, l:2, o:1}
 
 //전달받은 문자만 반환해야하는가? 아니면 다른 녀석들도 해야 하는가? b:0? 이런식으로.
 //이미 0으로 지정되어 있다면 그냥 +만 시키면 되는거 아닌가? 같은 생각이 필요하다.
 
-"my phone number is 1234"
+//"my phone number is 1234"
 //공백은 어찌 처리할껀데? 숫자는 어찌할껀데?
-"Hello hi"
+//"Hello hi"
 //대문자와 소문자를 모두 저장했을 때 시작의 대문자는 무시해야 할까?
 
 //문제해결하기 이전에 이러한 질문들을 던지는 것이 문제를 더 이해하는 다른 방식을 도입하게 되고 문제점을 해결할 수 있다. 
 
-charCount() //아무것도 넣지 않으면?
-charCount(null) //잘못된 값을 넣으면?
+//charCount() //아무것도 넣지 않으면?
+//charCount(null) //잘못된 값을 넣으면?
 
+//확신이 들지 않는 것을 세분화를 통해 발견해 나가는 것.
+
+//2.explore concreate examples.
+//skip. this part.
+
+//3.break it down.
+//charCount("your PIN number is 1234!")
+/* skeleton in this right this.
+    1:1,
+    2:1,
+    3:1,
+    4:1,
+    b:1,
+    e:1,
+    i:1,
+    m:1,
+    n:1,
+    o:1,
+    p:1,
+    r:2,
+    s:1,
+    u:2,
+    y:1
+*/
+
+function charCount(str){
+    //to-do.
+    /*
+        by looking at backbone, first of all "Lower tha All Cases."
+
+        make object to return at end.
+        loop over string, for each charcater.
+        if the char is a number/letter And a key in object, add one to count.
+        if the char is a number/letter And not in object, and it and set value to 1
+        if character is something else (space, period, etc.) don't do anything.
+    */
+
+    /*
+    문제에 접근해서 분석하고 해결해 나가는 과정을 묘사해야한다. 주석으로라도. 
+    설령 틀린 답이나오거나 답을 찾지 못했다고 하더라도
+    문제를 해결해 나가는 과정이 중요하기 때문이다.
+    */
+
+//4.solve/simplify.
+    /*  1. 시간이 많이 소요되는 부분을 무시하라. 하다 막히지 말고
+        코드를 작성하다가 다시 합칠 것이라는 것을 염두에 두고 가능한 작업들을
+        수행하기 위해 코드를 작성하는 편이 훨씬 낫다.
+        2. 보통 문제를 단순화 하는 과정에서 실제 해결책을 깊이 이해하고 
+        문제의 어려운 부분을 파악하면서 점차 이해하기 시작한다.
+
+    */
+    //make object to return at end.
+    var result = {};
+
+    //loop over string, for each charcater.
+    for(var i = 0; i < str.length; i++){
+        var char = str[i].toLowerCase();
+        if(result[char] > 0){
+            result[char]++;
+        }else{
+            result[char] = 1;
+        }
+    }
+        
+    //return object at end
+    return result;
+}
+
+charCount("hello");
+//{h: 1, e: 1, l: 2, o: 1};
+
+//여기서 대문자들은 lowercase()를 통해 처리했다.
+//그럼 그 이후에 숫자나 다른 문자열은 어떻게 할 것인가? -> 유효한 문자인지를 검사해야한다.
+//긴 배열을 만들어서 혹은 아스키코드를 통해서 혹은 정규식을 통해서 걸러내야 한다.
+//이 방법들을 생각해내고 또 알고 있어야 한다.
 
