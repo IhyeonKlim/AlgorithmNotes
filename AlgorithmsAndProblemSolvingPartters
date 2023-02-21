@@ -139,8 +139,8 @@ function charCount(str){
     //return object at end
     return result;
 }
-
 charCount("hello");
+
 //{h: 1, e: 1, l: 2, o: 1};
 
 //여기서 대문자들은 lowercase()를 통해 처리했다.
@@ -148,3 +148,78 @@ charCount("hello");
 //긴 배열을 만들어서 혹은 아스키코드를 통해서 혹은 정규식을 통해서 걸러내야 한다.
 //이 방법들을 생각해내고 또 알고 있어야 한다.
 
+
+//look back & refactoring.
+
+//can you derive the result differently? //다른 접근방법, 다른 해결방법
+//can you understand it at a glance? //직관적인가?
+//cna you use the result or method for some other problem? //다른 문제를 해결할 수 있는가?
+//can you improve the performance of your solution? //성능을 더 올릴 수 있는가? 시간,공간복잡도
+//can you think of other ways to refactor? //향상할 수 있는가? 언어규칙이나 방침, 규정에 따라서.
+//how have other people solved this problem? // 다른 사람들은 어떻게 해결했는가? 다른 접근법.
+
+/*
+function charCountRefac(str){
+    var obj = {};
+    for(var i = 0; i <str.length; i++){
+        var char = str[i].toLowerCase();
+        if(/[a-z0-9]/.test(char)){
+            if (obj[char] > 0){
+                obj[char]++;
+            } else {
+                obj[char] = 1;
+            };
+        }
+    }
+    return obj;
+    
+}
+*/
+
+function charCountRefac(str){
+    let obj = {};
+    for(let char of str){
+        //char = char.toLowerCase();
+        //검사하고 lowe가 효율적이냐, 아니면 검사하고가 효율적이냐.
+        if(/[a-z0-9]/.test(char)){
+            char = char.loLowerCase();
+            //검사하고가 효율적이다.
+            // if (obj[char] > 0){
+            //     obj[char]++;
+            // } else {
+            //     obj[char] = 1;
+            // };
+            //스트레스 받는 상황이면 간단하게 작성 후 다음으로 넘어가자.
+            //if (isAlphaNumeric(char))
+            obj[char] = ++obj[char] || 1;
+            
+        }
+    }
+    return obj;
+}
+
+//cf. numeric
+function isAlphaNumeric(str){
+    var code;
+
+    for(var i = 0; len = str.length; i++){
+        code = str.charCodeAt(i);
+        if(!(code > 47 && code < 58) && //numeric(0-9)
+           !(code > 64 && code < 91) && //upper aplpha (A-Z)
+           !(code > 96 && code < 123) ){ //lower aplha(a-z)
+            return false;
+        }
+    }
+    return true;
+}
+text = 1
+isAlphaNumeric(text);
+
+/*
+//정규식
+function isAlphaNumeric(str){
+    return /^[a-zA-Z0-9]$/.test(str);
+}
+isAlphaNumeric(text);
+*/
+//정규식이 55% 느리다.
