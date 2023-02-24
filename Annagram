@@ -1,0 +1,87 @@
+/*
+    Given two strings, write a function to determine 
+    if the second string is an anagram of the first. 
+    An anagram is a word, phrase, or name formed by rearranging
+    the letters of another, such as cinema, formed from iceman.
+
+    validAnagram('', '') // true
+    validAnagram('aaz', 'zza') // false
+    validAnagram('anagram', 'nagaram') // true
+    validAnagram("rat","car") // false) // false
+    validAnagram('awesome', 'awesom') // false
+    validAnagram('amanaplanacanalpanama', 'acanalmanplanpamana') // false
+    validAnagram('qwerty', 'qeywrt') // true
+    validAnagram('texttwisttime', 'timetwisttext') // true
+*/
+//나의 풀이.
+function validAnagram(string1, string2){
+    let flag = false;
+    if (string1.length == string2.length){
+        for(let i = 0 ; i < string1.length; i++){
+            string2 = string2.replace(string1[i],'');
+        }
+        if (string2.length == 0){
+            flag = true;
+        }
+    }
+    console.log(flag);
+    return flag;
+}
+
+validAnagram('', ''); // true
+validAnagram('aaz', 'zza'); // false
+validAnagram('anagram', 'nagaram'); // true
+validAnagram("rat","car"); // false) // false
+validAnagram('awesome', 'awesom'); // false
+validAnagram('amanaplanacanalpanama', 'acanalmanplanpamana'); // false
+validAnagram('qwerty', 'qeywrt'); // true
+validAnagram('texttwisttime', 'timetwisttext'); // true
+
+//풀이.
+function validAnagram2(first, second){
+    if (first.length !== second.length){
+        return false;
+    }
+    //빈도 카운터 객체다.
+    const lookup = {};
+
+    for (let i =0; i < first.length; i++){
+        let letter = first[i];
+        // if letter exists, increment, otherwise set to.
+        lookup[letter] ? lookup[letter] += 1 : loopup[letter] = 1;
+    }
+    for(let i = 0; i < second.length; i++){
+        let letter = second[i];
+        if (!lookup[letter]){
+            return false;
+        } else{
+            lookup[letter] -= 1;
+        }
+    }
+    return true;
+}
+
+//더 느려보이는데 빠른 이유?
+//레터개체수가 10억개라 가정하면, 10억개를 줄이고 검색해야한다. 
+//근데 빈도 카운터를 사용하면 알파벳만큼만 딱 쓴다. 아닌 것이 하나라도 있다면 바로 거를 수 있다. 
+
+
+//ex.
+validAnagram2('anagram', 'nagaram'); // true
+
+/* 
+lookup{
+a:3,
+n:1,
+g:1,
+r:1,
+m:1
+} -> 
+lookup{
+a:0,
+n:0,
+g:0,
+r:0,
+m:0
+}
+*/
