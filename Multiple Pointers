@@ -41,3 +41,62 @@ function sumZero(arr){
 //Time Complexity - O(N), Space complexity - O(1)
 
 sumZero([-4,-3,-2,-1,0,1,2,3,10]);
+
+
+
+/*
+count Unique values
+
+implement a function called countUniqueValues, which accepts a sorted array,
+and counts the unique values in the arrays. There can be negative numbers in the arrays
+, but it will always be sorted.
+
+countUniqueValues([1,1,1,1,1,1,2]) //2 -> (1,2)
+countUniqueValues([1,2,3,4,4,4,7,7,12,12,13]) //7
+countUniqueValues([]) //0
+countUniqueValues([-2,-1,-1,0,1]) //4 
+*/
+
+//example.
+/*
+명심할것은 포인터는 오름차순으로 정렬이 끝난 상태여야 한다.
+
+[1,1,1,2,3,3,4,4,5,6]
+
+ i
+[1,1,1,2,3,3,4,4,5,6]
+   j
+i와 j가 같으므로 j는 값이 큰쪽으로 이동한다.
+i는 그대로 두고 다시 비교한다.
+
+ i
+[1,1,1,2,3,3,4,4,5,6]
+       j   
+j는 정찰대의 역할을 수행한다. 먼저 가보는 것이다.
+여기서 j가 2에 도달하는 순간 i와 다르다. j가 더 큰경우 j의 값을
+i가 이동하여 그 위치에 j의 값을 넣어준다.
+
+   i
+[1,2,1,2,3,3,4,4,5,6]
+       j   
+그럼 다시 i와 j의 값이 같아졌다. 그러면 j를 다시 앞으로 이동시킨다.
+
+   i
+[1,2,1,2,3,3,4,4,5,6]
+         j   
+j와 i값을 비교한다. j가 더 크다. 따라서 i를 옮겨주고 그 값을 부여한다.
+
+     i
+[1,2,3,2,3,3,4,4,5,6]
+         j   
+... 계속 진행하면
+
+           i
+[1,2,3,4,5,6,4,4,5,6]
+                   j
+j가 인덱스의 마지막에 도달했을 때, i는 unique한 value들을 계속 축적해두었다.
+i의 현재 인덱스 위치를 알아고면 5다. (인덱스는 0부터 시작한다. +1을 해야하는 순간을 잊지말자.)
+시간복잡도는 O(N)이 된다.
+
+*/
+
