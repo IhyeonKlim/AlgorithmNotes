@@ -49,6 +49,8 @@ function r_same(arr1, arr2){
     
     //각각의 루프는 같은 내용의 val을 키형태로 집어넣어서 몇개나 되는지 빈도를 체크한다.
     for(let val of arr1){
+        //cf. binaryCode || means boolean or first true data return.
+        // null, NaN, 0, "", undefined -> false.
         frequencyCounter1[val] = (frequencyCounter1[val] || 0) + 1
     }
     
@@ -59,7 +61,7 @@ function r_same(arr1, arr2){
     //시간복잡도 -> O(2N)이다.
     //중첩된 루프는 -> O(N^)이다.
     consoel.log(frequencyCounter1);
-        consoel.log(frequencyCounter2);
+    consoel.log(frequencyCounter2);
     for(let key in frequencyCounter1){
         //일단 제곱한 녀석이 있는지 확인.
         if(!(key ** 2 in frequencyCounter2)){
@@ -79,3 +81,96 @@ function r_same(arr1, arr2){
 보통 배열이나 문자열과 같은 선형구조로 만드는 것이다.
 그러면 해당 분석을 다른객체와 신속하게 비교할 수있다.
 */
+
+//why is it wrong?
+function sameFrequency(arr1, arr2){
+    //in this case num type has to be changed. 
+    //numbers are not have length. remember.
+    arr1 = arr1.toString();
+    arr2 = arr2.toString();
+    if(arr1.length !== arr2.length){
+        return false;
+    }    
+    let arrdigit1 = {};
+    let arrdigit2 = {};
+    for (let val of arr1){
+        arrdigit1[val] = (arrdigit1[val] || 0) + 1
+    }
+    for (let val of arr2){
+        arrdigit2[val] = (arrdigit2[val] || 0) + 1
+    }
+    for (let key in arrdigit1){
+        if(arrdigit2[key] !== arrdigit1[key]){
+            return false;
+        }
+    }
+    return true;
+}
+
+
+//solution.
+function sameFrequency2(num1, num2){
+  let strNum1 = num1.toString();
+  let strNum2 = num2.toString();
+  if(strNum1.length !== strNum2.length) return false;
+  
+  let countNum1 = {};
+  let countNum2 = {};
+  
+  for(let i = 0; i < strNum1.length; i++){
+    countNum1[strNum1[i]] = (countNum1[strNum1[i]] || 0) + 1
+  }
+  
+  for(let j = 0; j < strNum1.length; j++){
+    countNum2[strNum2[j]] = (countNum2[strNum2[j]] || 0) + 1
+  }
+  
+  for(let key in countNum1){
+    if(countNum1[key] !== countNum2[key]) return false;
+  }
+ 
+  return true;
+}
+
+
+//areThereDuplicates 솔루션 (빈도 수 세기)
+function areThereDuplicates() {
+    //cf. arguments. in the all function. 
+    //It's not an array. but
+    //let args = Array.prototype.slice.call(arguments);
+    //let args = [].slice.call(arguments);
+    //OR let args = Array.from(arguments);
+    //OR let args = [...arguments];
+  let collection = {}
+  for(let val in arguments){
+    collection[arguments[val]] = (collection[arguments[val]] || 0) + 1
+  }
+  for(let key in collection){
+    if(collection[key] > 1) return true
+  }
+  return false;
+}
+
+
+//areThereDuplicates 솔루션 (다중 포인터)
+function areThereDuplicates2(...args) {
+    //sometimes. ...args.
+    // Two pointers
+  args.sort((a,b) => a > b);
+  let start = 0;
+  let next = 1;
+  while(next < args.length){
+    if(args[start] === args[next]){
+        return true
+    }
+    start++
+    next++
+  }
+  return false
+}
+//areThereDuplicates One Liner 솔루션
+function areThereDuplicates3() {
+  return new Set(arguments).size !== arguments.length;
+}
+
+areThereDuplicates(1,2,3,4,5,6,6);
