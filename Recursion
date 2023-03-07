@@ -1,0 +1,11 @@
+/*
+    Objectives
+
+    define what recursion is and how it can be used
+    understand the two essential components of a recursive function
+    visualize the call stack to better debug and understand recursive functions
+
+    use helper method recursion and pure recursion to solve more difficult problems.
+
+    story. dragon and mark. what's the first number.
+*/
