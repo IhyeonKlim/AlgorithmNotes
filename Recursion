@@ -18,5 +18,38 @@
     Object traversal.
     sometimes a cleaner alternative to iteration.
 
-    
+    why we need recursion?
+    function needs order.
+    function is placesed in stack when it called.
+
+    caution.
+    recursive functions are require end point. = base case. then stops.
+    different input. obvious.
 */
+
+//basic recursion.
+
+function countDown(num){
+    if(num <= 0){
+        console.log("All done!");
+        return;
+    }
+    console.log(num);
+    num--;
+    countDown(num);
+}
+
+/*
+it usually made by iterate.
+
+function countDown(num){
+    for(var i = num; i > 0; i--){
+        console.log(i);
+    }
+    console.log("All done!");
+}
+
+*/
+
+
+countDown(5);
