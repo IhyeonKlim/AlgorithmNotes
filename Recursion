@@ -8,4 +8,15 @@
     use helper method recursion and pure recursion to solve more difficult problems.
 
     story. dragon and mark. what's the first number.
+
+    definition of recursion. 
+    A process that calls itself.
+
+    JSON.parse/ JSON.stringify. upto js engine.
+    document.getElementById and DOM traversal algorithms.
+    cf. Dom은 요소가 중첩된 트리구조를 가지고 있다.
+    Object traversal.
+    sometimes a cleaner alternative to iteration.
+
+    
 */
