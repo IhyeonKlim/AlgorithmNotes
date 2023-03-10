@@ -120,3 +120,58 @@ function linearSearch(arrays, val){
 
 //this is index of function doing it.
 //time complexity O(N).
+
+
+
+/*
+    about Linear Search Big O
+
+    O(1) is best.
+    O(n) is worst.
+    average is O(n)
+
+    remember we drop all integer.
+    2*n, n/2, 0.25*n is all integer. so O(n)
+*/
+
+/*
+    **** Binary Search
+
+    binary search is a much faster form of search.
+    rather than elimination one element at a time, 
+    you can eleminate 
+    'half'
+    of the remainings elements at a time.
+    binary search only works on SORTED ARRAYS.
+
+
+    ex)
+    find "Oregon".
+
+    *just remember that you have to compare who is bigger.
+    
+    59 states. just pick a half.
+        states[29] //Missouri.
+    another half.
+        states[44] //Pennsylvania.
+
+    if array is sorted. can reduce half of time.
+    same like divide and conquer.
+*/
+
+
+//let's search for 15: 
+//[1, ... , 15, ... , 19]
+
+/* 
+    make Binary Search Pseudocode.
+
+    1. this function accepts a sorted array and a value.
+    2. create a left pointer at the start of the array, and a right pointer at the end of the array.
+    3. while the left pointer comes before the right pointer:  
+        create a pointer in the middle.
+        if you find the value you want, return the index.
+        if the value is too small, move the left pointer up.
+        if the value is too large, move the right pointer down.
+    4. if you never find the value, return -1.
+*/
