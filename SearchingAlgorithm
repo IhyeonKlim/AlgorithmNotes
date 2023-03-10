@@ -1,0 +1,122 @@
+/*
+    searching algorithm
+    for searching engine.
+
+    Objectives.
+
+    Describe what a searching algorithm is.
+    Implement linear search on arrays.
+    Implement binary search on sorted arrays.
+    Implement a naive string searching algorithm.
+    Implement the KMP string searching algorithm.
+    
+
+*/
+
+var userNames = ["tommy","monkey","dinesh123","i_hate_cats"];
+
+userNames.indexOf("i_hate_cats"); // return index no. 3 is there isn't return -1.
+
+
+//How do we search?
+// given an array, the simplest way to search for an vlaue is to look at every element in the array and check if it's the value we want.
+
+//this is example for get js object datas.
+var states = [
+    { name: 'Alabama', abbrev: 'AL' },
+    { name: 'Alaska', abbrev: 'AK' },
+    { name: 'Arizona', abbrev: 'AZ' },
+    { name: 'Arkansas', abbrev: 'AR' },
+    { name: 'California', abbrev: 'CA' },
+    { name: 'Colorado', abbrev: 'CO' },
+    { name: 'Connecticut', abbrev: 'CT' },
+    { name: 'Delaware', abbrev: 'DE' },
+    { name: 'Florida', abbrev: 'FL' },
+    { name: 'Georgia', abbrev: 'GA' },
+    { name: 'Hawaii', abbrev: 'HI' },
+    { name: 'Idaho', abbrev: 'ID' },
+    { name: 'Illinois', abbrev: 'IL' },
+    { name: 'Indiana', abbrev: 'IN' },
+    { name: 'Iowa', abbrev: 'IA' },
+    { name: 'Kansas', abbrev: 'KS' },
+    { name: 'Kentucky', abbrev: 'KY' },
+    { name: 'Louisiana', abbrev: 'LA' },
+    { name: 'Maine', abbrev: 'ME' },
+    { name: 'Maryland', abbrev: 'MD' },
+    { name: 'Massachusetts', abbrev: 'MA' },
+    { name: 'Michigan', abbrev: 'MI' },
+    { name: 'Minnesota', abbrev: 'MN' },
+    { name: 'Mississippi', abbrev: 'MS' },
+    { name: 'Missouri', abbrev: 'MO' },
+    { name: 'Montana', abbrev: 'MT' },
+    { name: 'Nebraska', abbrev: 'NE' },
+    { name: 'Nevada', abbrev: 'NV' },
+    { name: 'New Hampshire', abbrev: 'NH' },
+    { name: 'New Jersey', abbrev: 'NJ' },
+    { name: 'New Mexico', abbrev: 'NM' },
+    { name: 'New York', abbrev: 'NY' },
+    { name: 'North Carolina', abbrev: 'NC' },
+    { name: 'North Dakota', abbrev: 'ND' },
+    { name: 'Ohio', abbrev: 'OH' },
+    { name: 'Oklahoma', abbrev: 'OK' },
+    { name: 'Oregon', abbrev: 'OR' },
+    { name: 'Pennsylvania', abbrev: 'PA' },
+    { name: 'Rhode Island', abbrev: 'RI' },
+    { name: 'South Carolina', abbrev: 'SC' },
+    { name: 'South Dakota', abbrev: 'SD' },
+    { name: 'Tennessee', abbrev: 'TN' },
+    { name: 'Texas', abbrev: 'TX' },
+    { name: 'Utah', abbrev: 'UT' },
+    { name: 'Vermont', abbrev: 'VT' },
+    { name: 'Virginia', abbrev: 'VA' },
+    { name: 'Washington', abbrev: 'WA' },
+    { name: 'West Virginia', abbrev: 'WV' },
+    { name: 'Wisconsin', abbrev: 'WI' },
+    { name: 'Wyoming', abbrev: 'WY' }
+];
+
+//linear way is not a bad choice. but what if that array is sorted?
+
+/*
+*** JavaScript has search!
+    There are many diffenrent search methods on arrays in JavaScript.
+    indexOf() //return index no.
+    includes() //return boolean.
+    find() //require callback, return first value else undefined. 
+    findIndex() //require callback, return index no else -1.
+
+how do these function works?
+
+    cf. Array.prototype.find(callback)
+    callback = (element => element)
+    callback = function fn_findSomethingAndDo(array){
+        return array.key === 'something I looking for';
+    }
+    ex)
+    Array.find(array => array.key === "something I looking for");
+
+    cf2. Array.prototype.findIndex(callback)
+    callback = (element => element)
+    callback = function fn_findSomethingAndDo(array){
+        return array.key === 'something I looking for';
+    }
+    ex)
+    Array.findIndex(array => array.key === "something I looking for");
+    
+    *find, findIndex  function is not mutate original array.
+
+*/
+
+//Linear Search
+//my sol.
+function linearSearch(arrays, val){
+  for (let i = 0; i < arrays.length; i++){
+      if (arrays[i] == val){
+          return i;
+      }
+  }
+  return -1;
+}
+
+//this is index of function doing it.
+//time complexity O(N).
