@@ -34,3 +34,55 @@ function collectOddValues(arr){
 collectOddValues([1,2,3,4,5,6,7,8,9]);
 //helper method는 
 //재귀적이지 않은 외부 함수가 재귀적인 함수를 호출하는 것이다.
+
+
+//pure recursion
+
+function collectOddValues(arr){
+    let newArr = [];
+
+    if (arr.length === 0){
+        return newArr;
+    }
+
+    if(arr[0] % 2 !== 0){
+        newArr.push(arr[0]);
+    }
+
+    newArr = newArr.concat(collectOddValues(arr.slice(1)));
+    return newArr;    
+}
+
+collectOddValues([1,2,3,4,5]); //[1,3,5]
+/*
+    [1].concat(collectOddValues([2,3,4,5]));
+                [].concat(collectOddValues([3,4,5]));
+                            [3].concat(collectOddValues([4,5]))
+                                        [].concat(collectOddValues([5]));
+                                                    [5].concat(collectOddValues([]));
+                                                                []
+                
+cf. concat() -> String.concat(String) or Array.concat(Array)
+    means : link (things) together in a chain or series.
+ex)
+let test1 = "Hello";
+let test2 = "World";
+console.log(test1.concat(test2)); //HelloWorld
+
+let arrayTest1 = new Array("Hello", "World");
+let arrayTest2 = new Array("Test1", "Test2");
+
+console.log(arrayTest1.concat(arrayTest2)); //["Hello","World","Test1","Test2"]
+
+Tips
+
+For arrays, use methods like slice, the spread operator, and concat.
+That make copies of arrays. So you do not mutate them.
+
+Remember that strings are immutable so you will need to use methods lice slice, substr, or substring.
+문자열은 변경할 수 없다. 잘라야 한다. 
+
+To make copies of objects use Object.assign, or the spread operator.
+
+*/
+
