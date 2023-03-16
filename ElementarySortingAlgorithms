@@ -1,0 +1,51 @@
+/*
+    *정렬은 컴퓨터 공학의 정수이다.
+
+    What if sorting?
+
+    sorting is the process of rearranging the items in a collection (e.g. an array)
+    so that the items are in some kind of order.
+
+http://panthema.net/2013/sound-of-sorting
+
+sorting algorithms animations.
+
+    objectives.
+    buble.
+    selection.
+    insertion.
+
+    javaScript has sort method.
+
+    sort(string) -> a-z
+    sort(integer) -> 10 - 0
+
+    sort needs compare function.
+
+    
+*/
+
+function numberCompare(num1, num2){
+    return num1 - num2;
+}
+function numberCompareDESC(num1, num2){
+    return num2 - num1;
+}
+console.log([6,4,15,10].sort()); //10,15,4,6
+console.log([6,4,15,10].sort(numberCompare)); //4,6,10,15
+
+//num1 -num2 가 음수를 반환하면 ,num1이 num2 앞에 온다.
+// 양수를 반환하면 num2가 num1 앞에 온다.
+//num2- num1을하면 양수반환 DESC
+console.log([6,4,15,10].sort(numberCompareDESC)); //15, 10, 6, 4
+
+//문자열 길이로도 가능하다. 
+
+function compareByLen(str1, str2){
+    return str1.length - str2.length;
+}
+
+["Steele", "Colt", "Data Structures", "Algorithms"].sort(compareByLen);
+//['Colt', 'Steele', 'Algorithms', 'Data Structures']
+
+//function needs two arguments. returns negative positive or 0.
