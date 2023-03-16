@@ -72,17 +72,51 @@ const swap2 = (arr, idx1, idx2) => {
     3. if arr[j] is greater than arr[j+1], swap those two values!
     4. return the sorted array.
 */
-function bubleSort(arr){
-    var temp = 0;
-    for (let i = 0; i < arr.length; i++){
-      for(let j = 0; j < i-1; j++ ){
+//naive -> last index + undefined. it doesn't need it.
+// function bubleSort(arr){
+//     for (let i = 0; i < arr.length; i++){
+//       for(let j = 0; j < arr.length; j++ ){
+//           console.log(arr, arr[j], arr[j+1]);
+//           if (arr[j] > arr[j+1]){
+//                 var temp = arr[j];
+//                 arr[j] = arr[j+1];
+//                 arr[j+1] = temp;
+//             }          
+//       }
+//     }
+//     return arr;
+// }
+// better;
+// function bubleSort(arr){
+//     for (let i = arr.length; i > 0; i--){
+//         //each time 'i' goes minus, 'j'shurinks.
+//         for(let j = 0; j < i-1; j++ ){
+//             console.log(arr, arr[j], arr[j+1]);
+//             if (arr[j] > arr[j+1]){
+//                 var temp = arr[j];
+//                 arr[j] = arr[j+1];
+//                 arr[j+1] = temp;
+//             }          
+//         }
+//         console.log("One pass complete!");
+//     }
+//     return arr;
+// }
+//ES2015
+function bubbleSort(arr){
+    const swap = (arr, idx1, idx2) => {
+        [arr[idx1], arr[idx2]] = [arr[idx2], arr[idx1]];
+    };
+    for (let i = arr.length; i > 0; i--){
+        for (let j = 0; j < i -1; j++){
             if (arr[j] > arr[j+1]){
-                temp = arr[j];
-                arr[j] = arr[j+1];
-                arr[j+1] = temp;
-            }          
-      }
+                swap(arr, j, j+1);
+            }
+        }
     }
     return arr;
-}
+} 
 
+
+//bubleSort([37,29,45,8]);
+bubleSort([37,29,45,8,]);
