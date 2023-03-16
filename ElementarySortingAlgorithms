@@ -205,3 +205,79 @@ function selectionSort(arr){
 }
 
 selectionSort([0,2,34,22,10, 19, 17]);
+
+//timeconplexity O(n^)
+
+
+/*
+===============================
+        insertion sort.
+===============================
+    similar to bubbleSort, but instead of first placing large values into sorted position,
+    it places small values into sorted position.
+    key. 최솟값을 선택하고 맨 앞으로 배치한다.
+
+    pseudocode
+    1. start by picking the second element in the array.
+    2. now compare the second element with the one before it and swap if necessary.
+    3. continue to the next element and if it is in the incorrect order, 
+    iterate through the sorted portion (i.e. the left side) to place the element in the correct place.
+    4. repeat until the array is sorted.
+
+    key. pick a value and moving forward.
+    
+*/
+
+function insertionSort(arr){
+    for(var i = 1; i < arr.length; i++){
+        var currentVal = arr[i];
+        //because of e.g. currentVal has to be smaller then arr[j]. add condition.
+        for(var j = i-1; j >= 0 && arr[j] > currentVal; j--){
+            arr[j+1] = arr[j]
+        }
+        //we need j+1. remember you put a value(i.e. arr[j]) to arr[j+1] position. 
+        arr[j+1] = currentVal;
+        console.log(arr);
+    }
+    return arr;
+}
+insertionSort([2,1,9,76,4]);
+
+/*
+    what is insertion? ez to understand.
+    [1,2,9,76,0] in this case what we do?
+    (e.g.) pick 0. so we have to move 0.
+    0 is in currentVal. so we move 76 to 0's index.
+    now [1,2,9,76,76]
+    compare with 9 still bigger than currentVal(i.e. 0)
+    so we move 9 to 76's index.
+    now [1,2,9,9,76]
+    compare with 2 still bigger than currentVal(i.e. 0)
+    so we move 2 to 9's index.
+    now [1,2,2,9,76]
+    compare with 1 still bigger than currentVal(i.e. 0)
+    so we move 1 to 2's index.
+    now [1,1,2,9,76]
+    it's end of array.(index 0.)
+    so we put currentVal to index 0.
+    now [0,1,2,9,76]
+
+    timeconplexity = o(n^) but. if is almost sorted... 
+    bestCase [1,2,3,4,-1].
+    worstCase [4,3,2,1]
+
+*/
+
+/*
+    So, Big o of sorting. compare complexity.
+                best , average, worst, space.
+        buble   o(n), o(n^), o(n^), o(1)
+    insertion   o(n), o(n^), o(n^), o(1)
+    selection   o(n^), o(n^), o(n^), o(1)
+
+    이 3가지를 한 데 묶는 이유는 이것이 2차 정렬 알고리즘이기 때문이다.
+    cf. space complexity : this algorithms are not make new arr or make new values.
+    insertion sort is the specialized to keep ordering new data set.(i.e. adding new items.)
+
+    these algorithms are good at small data set.
+*/
