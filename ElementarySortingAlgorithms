@@ -49,3 +49,40 @@ function compareByLen(str1, str2){
 //['Colt', 'Steele', 'Algorithms', 'Data Structures']
 
 //function needs two arguments. returns negative positive or 0.
+
+//**********Buble sort. cf. visualgo.
+//key. 반복을 할 때마다 정렬할 항목이 줄어든다.(last index => biggest)
+
+//ES5 version.
+function swap(arr, idx1, idx2){
+    var temp = arr[idx1];
+    arr[idx1] = arr[idx2];
+    arr[idx2] = temp;
+}
+
+// ES2015
+const swap2 = (arr, idx1, idx2) => {
+    [arr[idx1],arr[idx2]] = [arr[idx2],arr[idx1]];
+}
+
+
+/* bublesort pseudocode.
+    1. start looping from with a variable called i the end of the array towards the beginning
+    2. start an inner loop with a variable called j from the beginning until i -1
+    3. if arr[j] is greater than arr[j+1], swap those two values!
+    4. return the sorted array.
+*/
+function bubleSort(arr){
+    var temp = 0;
+    for (let i = 0; i < arr.length; i++){
+      for(let j = 0; j < i-1; j++ ){
+            if (arr[j] > arr[j+1]){
+                temp = arr[j];
+                arr[j] = arr[j+1];
+                arr[j+1] = temp;
+            }          
+      }
+    }
+    return arr;
+}
+
