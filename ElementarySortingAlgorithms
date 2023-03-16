@@ -50,9 +50,13 @@ function compareByLen(str1, str2){
 
 //function needs two arguments. returns negative positive or 0.
 
-//**********Buble sort. cf. visualgo.
-//key. 반복을 할 때마다 정렬할 항목이 줄어든다.(last index => biggest)
-
+/* 
+===============================
+        Buble sort.
+===============================
+    cf. visualgo
+    key. 반복을 할 때마다 정렬할 항목이 줄어든다.(last index => biggest)
+*/
 //ES5 version.
 function swap(arr, idx1, idx2){
     var temp = arr[idx1];
@@ -144,3 +148,60 @@ bubleSort([8,1,2,3,4,5,6,7]);
 
 // time complexity O(n^) cuz useing double loop.
 // but if with noSwaps, like linear time.  O(n).
+
+
+/* 
+===============================
+        Selection sort.
+===============================
+    similar to bubbleSort, but instead of first placing large values into sorted position,
+    it places small values into sorted position.
+    key. 최솟값을 선택하고 맨 앞으로 배치한다.
+
+    pseudocode
+    1. store the first element as the smallest value you've seen so far.
+    2. complare this item to the next item in the array until you find a smaller number.
+    3. if a smaller number is found, designate that smaller number to be the new "minimum" 
+    and continue until the end of the array.
+    4. if the "minimum" is not the value(index) you initially began with, swap the two values.
+    5. repeat this with the next element until the array is sorted.
+
+*/
+
+//naive.
+//cf. it's not a value. about index.
+// function selectionSort(arr){
+//     for (let i = 0; i < arr.length; i++){
+//         var minimum = i;
+//         // wrong! -> mine var minimum = arr[i];
+//         for (let j = i+1; j < arr.length; j++){
+//             //read. arr[j] is lower than lowest.
+//             if(arr[j] < arr[minimum]){
+//                 minimum = j;
+//             }
+//         }
+//         //  wrong! -> mine arr[i] = minimum;
+//         console.log(i, minimum); 
+//         var temp = arr[i];
+//         arr[i]  = arr[minimum];
+//         arr[minimum] = temp;
+//     }
+//     return arr;
+// }
+function selectionSort(arr){
+    const swap = (arr, idx1, idx2) =>{
+        [arr[idx1], arr[idx2]] = [arr[idx2], arr[idx1]];
+    }
+    for (let i = 0; i < arr.length; i++){
+        let lowest = i;
+        for( let j = i + 1; j < arr.length; j++){
+            if ( arr[lowest] > arr[j]){
+                lowest = j;
+            }
+        }
+        if ( i !== lowest) swap(arr, i, lowest);       
+    }
+    return arr;
+}
+
+selectionSort([0,2,34,22,10, 19, 17]);
