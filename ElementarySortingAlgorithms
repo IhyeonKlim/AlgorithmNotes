@@ -103,20 +103,44 @@ const swap2 = (arr, idx1, idx2) => {
 //     return arr;
 // }
 //ES2015
-function bubbleSort(arr){
-    const swap = (arr, idx1, idx2) => {
-        [arr[idx1], arr[idx2]] = [arr[idx2], arr[idx1]];
-    };
+// function bubbleSort(arr){
+//     const swap = (arr, idx1, idx2) => {
+//         [arr[idx1], arr[idx2]] = [arr[idx2], arr[idx1]];
+//     };
+//     for (let i = arr.length; i > 0; i--){
+//         for (let j = 0; j < i -1; j++){
+//             if (arr[j] > arr[j+1]){
+//                 swap(arr, j, j+1);
+//             }
+//         }
+//     }
+//     return arr;
+// }
+//bubleSort([37,29,45,8]);
+
+
+//최적화 optimaized by noSwaps.
+function bubleSort(arr){
+    var noSwaps;
     for (let i = arr.length; i > 0; i--){
-        for (let j = 0; j < i -1; j++){
+        noSwaps = true;
+        for(let j = 0; j < i-1; j++ ){
+            console.log(arr, arr[j], arr[j+1]);
             if (arr[j] > arr[j+1]){
-                swap(arr, j, j+1);
-            }
+                var temp = arr[j];
+                arr[j] = arr[j+1];
+                arr[j+1] = temp;
+                noSwaps = false;
+            }          
         }
+        if(noSwaps) break;
     }
     return arr;
-} 
-
+}
+//this idea from that what if no swaps, do we have to loop?
 
 //bubleSort([37,29,45,8]);
-bubleSort([37,29,45,8,]);
+bubleSort([8,1,2,3,4,5,6,7]);
+
+// time complexity O(n^) cuz useing double loop.
+// but if with noSwaps, like linear time.  O(n).
