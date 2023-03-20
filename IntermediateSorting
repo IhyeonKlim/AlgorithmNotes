@@ -72,10 +72,84 @@ about merge sort.
 
 
 
-
+//use it two pointer.
 function merge(arr1,arr2){
+    let results = [];
+
+    //make two pointer. one for each array.
+    let i = 0; //indexOfArr1
+    let j = 0; //indexOfArr2
+    //둘 중 하나의 끝에 도달했다면 멈추는 루프가 있어야 한다.
+    while(i < arr1.length && j < arr2.length){
+        if(arr2[j] > arr1[i]){
+            results.push(arr1[i]);
+            i++;
+        }else{
+            results.push(arr2[j]);
+            j++;
+        }
+    }
+    while(i < arr1.length){
+        results.push(arr1[i]);
+        i++;
+    }
+    while(j < arr2.length){
+        results.push(arr2[j]);
+        j++;
+    }
     
+    return results;
 }
 
 
 merge([1,10,50],[2,14,99,100]);
+merge([],[1,3]);
+
+/*mergeSort Pseudocode with recursion
+    1.break up the array into halves until you have arrays that are empty or have one elmenet
+    2.once you have smaller sorted arrays, merge those arrays with other sorted arrays until you are back at the full length of the array. 
+    3.once the array has been merged back together, return the merged(and sorted) arrray
+
+*/
+
+function mergeSort(arr){
+    if(arr.length <= 1)return arr;
+/*  mergeSort();
+    it needs recursive.
+    so. think about base with exam.
+    arr.slice(0, half of index of array .);
+    Math.floor(arr.length/2); -> 3
+    arr.slice(0,3); //[10,24,76]
+    arr.slice(3); //[73,72,1,9]
+    
+*/  
+    let mid = Math.floor(arr.length/2);
+    let left = mergeSort(arr.slice(0, mid));
+    let right = mergeSort(arr.slice(mid));
+    return merge(left, right);   
+    //practice with 4 items and draw diagram.
+}
+
+
+mergeSort([10,24,76,73,72,1,9]);
+
+//timeComplexity (best,average,worst) O(NlogN) there is no edge case. 
+/*
+32개의 배열.  -> 2의 5승
+16 16 2의 4승
+8 8 8 8 2의 3승
+4 4 4 4 4 4 4 4 2의 2승
+2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2의 1승
+1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 
+
+(분할시) decompositions O(logN) + (합병시) comparisons per decomposition O(N)
+
+데이터에 구애받지 않는 정렬 알고리즘을 원한다면 최선은 O(NlogN)
+
+space Complexity -> O(N) 배열이 클수록 합병 정렬은 메모리에 더 많은 배열을 저장해야한다.
+*/
+
+
+
+
+
