@@ -192,3 +192,8 @@ function quickSort(arr, left = 0, right = arr.length-1){
     
 }
 quickSort([4,6,9,1,2,5,3]);
+//O(N logN)
+//bestCase O(n)decompositions
+//worstCase if array is sorted. pivot choose first index. so O(n).
+//to avoid this pick random pivot or middle of index.
+//if pick pivot maximum or minimum is O(N^) that's worst.
