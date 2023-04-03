@@ -1,0 +1,19 @@
+/*
+    ================
+    comparison sorts
+    ================
+average time complexity
+
+buble sort - O(n^2)
+insertion sort - O(n^2)
+selection sort - O(n^2)
+quick sort - O(n log(n))
+merge sort - O(n log(n))
+
+can we do better.
+
+수학적으로 비교 정렬의 평균 시간 복잡도에는 하한선과 점근선이 있다.
+
+수학적인 제약이 있다. 
+비교 정렬 알고리즘 말고 다른 것.
+*/
