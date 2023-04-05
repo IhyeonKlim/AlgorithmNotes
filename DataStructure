@@ -1,0 +1,36 @@
+/*
+
+Data structures are collections of values, the relationships among them,
+and the functions or operations that can be applied to the data.
+
+about Class ES2015
+*/
+
+
+class Student{
+    constructor(firstName, lastName, year){
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.grade = year;
+        this.tardies = 0;
+    }
+    fullName(){
+        return `your full name is ${this.firstName} ${this.lastName}`;
+    }
+    markLate(){
+        this.tardies +=1;
+        return `has been late ${this.tardies} times`;
+    }
+    //instance we can't just pop from nothing. we need Array and .pop.
+    //in Class needs instance.
+    
+}
+// here in 'this' . it changes which it depends on what about.
+// in this case this = Student.
+
+let firstStudent = new Student("Colt", "Steels",3);
+//firstStudent
+//Student {firstName: 'Colt', lastName: 'Steels', grade: 3}
+//firstStudent.firstName //Colt
+
+//firstStudent.markLate() -> // has been late 1 times.
