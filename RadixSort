@@ -94,3 +94,15 @@ function radixSort(nums){
     return nums;
 }
 radixSort([23,345,5467,12,2345,9852])
+
+
+/*
+n = 정렬 항목 또는 정수의 수 length of array
+k = 정수의 기리. = 자리수. number of digits.
+
+timecomplexity(best) : O(nk)
+timecomplexity(average) : O(nk)
+timecomplexity(worst) : O(nk)
+spaceComplexity : O(n + k)
+
+*/
