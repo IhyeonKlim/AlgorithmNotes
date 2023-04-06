@@ -13,16 +13,32 @@ class Student{
         this.lastName = lastName;
         this.grade = year;
         this.tardies = 0;
+        this.scores = [];
     }
     fullName(){
         return `your full name is ${this.firstName} ${this.lastName}`;
     }
     markLate(){
         this.tardies +=1;
+        if(this.tardies >= 3){
+            return "you are expelled!"
+        }
         return `has been late ${this.tardies} times`;
     }
     //instance we can't just pop from nothing. we need Array and .pop.
     //in Class needs instance.
+    addScore(score){
+        this.scores.push(score);
+        return this.scores;
+    }
+    calculateAverage(){
+        let sum = this.scores.reduce(function(a,b){return a+b});
+        return sum/this.scores.length;
+    }
+
+static EnrollStudents(){
+    return "EROLLING STUDENTS!"
+}
     
 }
 // here in 'this' . it changes which it depends on what about.
@@ -34,3 +50,80 @@ let firstStudent = new Student("Colt", "Steels",3);
 //firstStudent.firstName //Colt
 
 //firstStudent.markLate() -> // has been late 1 times.
+//firstStudent.scores.push(1) ok. but.
+//firstStudent.addScore(92);
+
+//firstStudent.calculateAverage()
+
+
+
+//static keywords defines static method for a class.
+//스태틱 메소드는 클래스의 인스턴스화 없이도 호출될 수 있으며 클래스 인스턴스를 통해서는 호출될 수 없다.
+//스태틱은 유틸리티 펑션이나 다름없다.
+//정의된 하나의 개별 student 인스턴스와는 별 관련 없다는 이야기다.
+
+//firstStudent.EnrollStudents(); // error. Student.EnrollStudents is not a function
+Student.EnrollStudents(); //works
+
+// 이 클래스 메소드는 개별 인스턴스와는 무관한 기능이다.
+// ex bellow.
+
+class Point{
+    constructor(x,y){
+        this.x = x;
+        this.y = y;
+    }
+
+    static distance(a, b){
+        const dx = a.x - b.x;
+        const dy = a.y - b.y;
+
+        return Math.hypot(dx, dy);
+
+        //cf. hypotenuse : 빗변. 직각 삼각형의 빗변을 구할때 사용하는 함수.
+        //means : distance = math.sqrt(2**2 + 2**2)
+        //distance =math.hypot(2,2) 
+        //좌표평면의 두 점을 구할 때. ex) A(1,2) B(3,5)라고 할때
+        //좌표만 있고 변의 길이가 존재하지 않기 때문에. 직접 구해줘야 한다.
+        //distance = (b[0]-a[0], (b[1]-a[1]))
+        //따라서 빗변은 math.hypot(b[0]-a[0], (b[1]-a[1]));
+        //그래서 return 되는 값은 바로 두 점사이의 거리가 되는 것이다.
+    
+    }
+    
+}
+
+const p1 = new Point(5, 5);
+const p2 = new Point(10,10);
+
+Point.distance(p1,p2);
+//static 키워드로 클래스 메소드를 정의하고, 개별 인스턴스상에서는 더이상 이러한 클래스 메소드를 호출하지 않아야 한다.
+
+//Using classes.
+
+/* 구현되는 클래스의 모습은 다음과 같다.
+
+class DataStructure(){
+    constructor(){
+        // what default properties should it have?
+        
+    }
+    someInstanceMethod(){
+        //what should each object created from this class be albe to do?
+    }
+    
+}
+*/
+
+//this. 는 개별 클래스로부터 생성된 객체, 즉 실제 인스턴스를 참조한다는 것.
+
+/*recap.
+    -Classes are blueprints that when created make object known as instances.
+    -Classes are created with the new keywords.
+    -The constructor function is a special function that gets run when the class is instantiated.
+    -Instance methods can be added to classes similar to methods in objects.
+    -Class methods can be added using the static keyword.
+    
+
+
+*/
