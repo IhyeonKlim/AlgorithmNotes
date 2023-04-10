@@ -1,0 +1,48 @@
+/*
+Objectives.
+
+define what a singly linked list is.
+
+compare and contrast linked lists with arrays.
+
+implement insertion, removal and traversal methods on singly lined lists.
+
+
+what is a linked list?
+
+array. index.
+
+no index.
+
+each elements are nod.
+
+head. begin
+tail. end
+
+**singly linked lists.
+               total length = 4
+   head                            tail 
+    4    ->    6   ->    8   ->    2  -> 
+        next      next      next      null
+
+단일방향으로 연결되어있다.
+
+array ='엘리베이터 있는 고층건물' = 바로 간다.
+linked list = "엘베 없음." = 하나하나 걸어올라가야한다.
+
+lists
+    do not have indexes.
+    connected via nodes with a next pointer
+    random access is not allowed
+    it have to has 'head'
+    -> best of insertion and deletion
+    
+arrays
+    indexed in order
+    insertion and deletion can be expensive
+    can quickly be accessed at a specific index.
+
+cf. visualgo.
+
+*/
+
