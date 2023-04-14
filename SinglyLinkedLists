@@ -97,6 +97,30 @@ class SinglyLinkedList{
        return this;
 
     }
+   pop(){
+      if(!this.head) return undefined;
+      var current = this.head;
+      var newTail = current;
+      while(current.next){
+         newTail = current;
+         current = current.next;
+      }
+      console.log(current.val);
+      console.log(newTail.val);
+      this.tail = newTail;
+      this.tail.next = null;
+      this.length--;
+      //if one item left -> tail. and head? this is speacial case.
+      if (this.length == 0){
+         this.head = null;
+         this.tail = null;
+      }
+      
+      return current;
+      
+
+      
+   }
    // traverse(){
    //    var current = this.head;
    //    while(current){
@@ -104,6 +128,18 @@ class SinglyLinkedList{
    //       current = current.next;
    //    }
    // }
+   shift(){
+      if(!this.head) return undefined;
+      var currentHead = this.head;
+      this.head = currentHead.next;
+      this.length--;
+      if (this.length == 0){
+         this.tail = null;
+      }
+      return currentHead;
+   }
+
+   
 }
 
 
@@ -132,5 +168,12 @@ list.head.next.next //GOODBYE
    loop through the list until you reach the tail
    set the next property of the 2nd to last node to be null
 
+   shifting pseudocode
+
+   if there are no nodes, return undefined
+   store the current head property in a variable
+   set the head property to be the current head's next property
+   decrement the length by 1
+   return the value of the node removed.
    
 */
