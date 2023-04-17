@@ -139,6 +139,50 @@ class SinglyLinkedList{
       return currentHead;
    }
 
+   unshift(val){
+      var newNode = new Node(val);
+      if(!this.head){
+         this.head = newNode;
+         this.tail = this.head;
+      }else{
+         newNode.next = this.head;
+         this.head = newNode;
+      }
+      this.length++;
+      return this;
+   }
+   get(index){
+      if(index < 0 || index >= this.legnth) return null;
+      var counter = 0;
+      var current = this.head;
+      while(counter !== index){
+         current = current.next;
+         counter++;
+      }return current;
+   }
+   set(index, val){
+      var foundNode = this.get(index);
+      if(foundNode){
+         foundNode.val = val;
+         return true;
+      }
+      return false;
+   }
+   insert(index, val){
+      if(index < 0 || index > this.length) return false;
+      if(index === this.length) return !!this.push(val);
+      if(index === 0) return !!this.unshift(val);
+      //cf. !"hi" -> false , !!"hi" -> true. !연산자는 boolean을 강제한다.
+
+      var newNode = new Node(val);
+      var previous = this.get(index -1);
+      var temp = previous.next;
+      prev.next = newNode;
+      newNode.next = temp;
+      this.length++;
+      return true;
+   }
+   
    
 }
 
@@ -175,5 +219,41 @@ list.head.next.next //GOODBYE
    set the head property to be the current head's next property
    decrement the length by 1
    return the value of the node removed.
+
+   unshifting pseudocode
+
+   this function should accept a value
+   create a new node using the value passed to the function 
+   if there is no head property on the list, set the head and tail to be the newly created node
+   otherwise set the newly created node's next property to be the current head property on the list.
+   set the head property on the list to be that newly created node
+   increment the length of the list by 1
+   return the linked list
+
+
+   get pseudocode
+
+   this function should accept an index
+   if the index is less than zero or greater than or equal to the length of the list, return null
+   loop through the list until you reach the index and return the node at that specific index.
+   
+   set pseudocode
+
+   this function should accept a value and an index
+   user your get function to find the specific node.
+   if the node is not found, return false
+   if the node is found, set the value of that node to be the value passed to the function and return true
+
+   insert pseudocode
+   
+   if the index is less than zero or greater than the length, return false;
+   if the index is the saem as the length, push a new node to the end of the list.
+   if the index is 0, unshift a new node to the start of the list.
+   Otherwise, using the get methods, access the node at the index -1
+   Set the next property on that node to be the new node
+   Set the next property on the new node to be the previous next
+   increment the length
+   return true.
+   
    
 */
