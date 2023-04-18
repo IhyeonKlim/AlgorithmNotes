@@ -182,6 +182,39 @@ class SinglyLinkedList{
       this.length++;
       return true;
    }
+   remove(index){
+      if(index < 0 || index >= this.length) return undefined;
+      if(index === 0) return this.shift();
+      if(index === this.length-1) return this.pop();
+      var previousNode = this.get(index-1);
+      var removed = previousNode.next;
+      previousNode.next = removed.next;
+      this.length--;
+      return removed;  
+   }
+   reverse(){
+      var node = this.head;
+      this.head = this.tail;
+      this.tail = node;
+      var next;
+      var prev = null;
+      for(var i = 0; i < this.length; i++){
+         next = node.next;
+         node.next = prev;
+         prev = node;
+         node = next;
+      }
+      return this;
+   }
+   print(){
+      var arr = [];
+      var current = this.head;
+      while(current){
+         arr.push(current.val)
+         current = current.next;
+      }
+      console.log(arr);
+   }
    
    
 }
@@ -254,6 +287,43 @@ list.head.next.next //GOODBYE
    Set the next property on the new node to be the previous next
    increment the length
    return true.
+
+   remove pseudocode
+   if the index is less than zero or greater than the length return undefined
+   if the index is the same as the length-1, pop
+   if the index is 0, shift
+   otherwise, using the get method, access the node at the index -1
+   set the next property on that node to be the next of the next node
+   decreament the length
+   return the value of the node removed
+
+   reverse pseudocode
+
+   swap the head and tail
+   create a variable called next
+   create a variable called prev
+   create a variable called node and initialize it to the head property
+   loop through the list
+   set next to be the next property on whatever node is
+   set the next property on the node to be whatever prev is
+   set prev to be the value of the node variable
+   set the node variable to be the value of the next variable
    
+
+   BigO 
+
+   insertion O(1)
+   removal - it depends O(1) or O(N)
+   searching - O(N)
+   Access - O(N)
+
+
+   recap
+
+   SinglyLinkedLists are an excellent alternative to arrays when insertion and deletion at the beginning area frequently required
+
+   arrays contailn a built in index where are linked lists do not.
+   
+   the idea of a list data structure that consists of nodes is the foundation for other data structures like stacks and queues.
    
 */
