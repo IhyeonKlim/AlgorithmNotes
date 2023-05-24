@@ -222,6 +222,37 @@ class doublyLinkedList{
         }
         return false;
     }
+    insert(index, val){
+        if(index < 0 || index > this.length) return false;
+        if(index === 0) return !!this.unshift(val);
+        if(index === this.length) return !!this.push(val);
+        
+        var newNode = new Node(val);
+        var beforeNode = this.get(index-1);
+        var afterNode = beforeNode.next;
+        
+        beforeNode.next = newNode, newNode.prev = beforeNode;
+        newNode.next = afterNode, afterNode.prev = newNode;
+        this.length++;
+        return true;
+    }
+    remove(index){
+        if(index < 0 || index > this.length) return false;
+        if(index === 0)return this.shift();
+        if(index === this.length-1) return this.pop();
+        
+        var removeNode = this.get(index);
+        var beforeNode = removedNode.prev;
+        var afterNode = removedNode.next;
+        beforeNode.next = afterNode;
+        afterNode.prev = beforeNode;
+        // removedNode.prev.next = removedNode.next;
+        // removedNode.next.prev = removedNode.prev;
+        removedNode.next = null;
+        removedNode.prev = null;
+        this.length--;
+        return removedNode;
+    }
 }
 
 var list = new doublyLinkedList();
@@ -257,4 +288,28 @@ list.unshift("Hagrid");
     set the next and prev peoperties on the correct nodes to link everthing together
     increment the length
     return true
+
+    remove pseudocode
+    if the index is less than zero or greater than or equal to the length return undefined
+    if the index is 0, shift
+    if the index is the same as the length -1, pop
+    Use the get method to retrieve the item to be removed
+    Update the next and prev properties to remove the found node from the list.
+    Set next and prev to null on the found node
+    Decrement the length
+    Return the removed node.
+
+
+    Big O of doubly Linked lists.
+    insertion : O(1)
+    removal : O(1)
+    searching : O(N)
+    Access : O(N)
+
+    Recap
+
+    doubly linked lists are almosdt indedtical to singly linked lists except there is an additional pointer to previous nodes
+    better than singly linked lists for finding nodes and can be done in half the time!
+    however they do take up more memory considering the extra pointer.
+
     */
