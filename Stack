@@ -1,0 +1,23 @@
+/*
+    Stack
+
+    Objective
+
+    define what a stack is
+    Understand use cases for a stack
+    Implement operations on a stack data structure.
+    
+
+    Definition : a Lifo data structure
+    The last element added to the stack will be the first element removed from.
+
+    Where we use?
+    managing function invocations
+    Undo / Redo.
+    Routing(history object)
+
+
+    this is abstrack conception.
+    */
+
+//Array Implementations.
