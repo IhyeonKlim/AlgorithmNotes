@@ -1,0 +1,27 @@
+about cubrid
+
+#table comment;
+ALTER TALBE [table name] COMMENT = '코멘트';
+EX) ALTER TABLE t_cmm COMMENT = '공통테이블';
+
+#table column comment;
+ALTER TABLE [table name] MODIFY COLUMN [column name] [column attr] COMMENT '코멘트';
+EX) ALTER TABLE t_cmm MODIFY COLUMN reg_id VARCHAR(50) COMMENT '등록ID';
+
+#get comment list.
+
+select attr_name, 
+class_name, 
+data_type, 
+prec, 
+default_value, 
+is_nullable, 
+COMMENT, 
+'alter table ' || class_name || 'modify column' || attr_name || ' ' 
+|| decode(data_type, 'INTEGER', data_type, decode(data_type, 'STRING', 'VARCHAR(' , data_type) || prec || ')' )
+|| decode(is_nullable, 'YES', ' ', ' NOT NULL') || decode(default_value, NULL, '', ('DEFAULT ''' || default_value || ''' '))
+|| 'comment' ''';'
+from db_attribute
+where class_name = 't_cmm'
+and comment is null;
+
